@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<base target="_top">
+<?!= include('css'); ?>
+</head>
+
+<title>TICKETING SYSTEM</title>
+
+<link rel="shortcut icon" type="image/png" href="images/google_icon"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
+<link type="text/css" href="jquery-ui.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+$(document).ready(function(){
+        $(".content_form").slideDown()
+    });
+    
+</script>
+    
+
+<script>
+
+$(function () { 
+    var cityDropdown = $("#concerns"),
+        countryDropdown = $('<select></select>'), 
+        countries = []; 
+    
+    // parse the nested dropdown
+    cityDropdown.children().each(function () {
+        var group = $(this),
+            countryName = group.attr('label'),
+            option;
+        
+        // create an option for the country
+        option = $('<option></option>').text(countryName);
+        
+        // store the associated city options
+        option.data('concerns', group.children());
+        
+        // check if the country should be selected
+        if( group.find(':selected').length > 0 ) {
+            option.prop('selected', true);
+        }
+        
+        // add the country to the dropdown
+        countryDropdown.append(option);
+    });
+    
+    // add the country dropdown to the page
+    cityDropdown.before(countryDropdown);
+    
+    // this function updates the city dropdown based on the selected country
+    function updateCities() {
+        var country = countryDropdown.find(':selected');
+        cityDropdown.empty().append(country.data('concerns'));
+    }
+    
+    // call the function to set the initial cities
+    updateCities();
+    
+    // and add the change handler
+    countryDropdown.on('change', updateCities);
+});
+
+   function clearContents(element) {
+  element.value = '';
+  element.style.color = "black";
+}
+    
+    $( function() {
+    $( "#datepicker" ).datepicker();
+        $( "#datepicker2" ).datepicker();
+  } );
+    
+</script>    
+
+<body>
+
+<div class="header">
+  TICKETING SYSTEM
+</div>
+
+
+   <div class="row">
+      <div class="leftcolumn">
+		<div class="d-flex justify-content-left h-1">
+			<div class="image_outer_container">
+				<div class="green_icon"></div>
+				<div class="image_inner_container">
+					<img src="https://i0.wp.com/tricksmaze.com/wp-content/uploads/2017/04/Stylish-Girls-Profile-Pictures-36.jpg?resize=300%2C300&ssl=1">
+				</div>
+			</div>
+		</div>
+	</div>
+    
+
+<div class="row">
+<div class="leftcolumn">
+	
+<div class = "leftcolumn_top">
+
+<div class="right_cont">
+<div class="welcome">
+Welcome, <B><script>   
+  
+//  var usrName = "@HttpContext.Current.User.Identity.Name";
+
+//  google.script.run.withSuccessHandler(function (doSomething) {
+//    alert (doSomething);
+//  } ).doSomething();
+//  
+  </script> </B> 
+</div>
+
+</div>
+</div>
+
+<div class="deals">
+  <h3>TICKETING SYSTEM</h3>
+</div>
+   
+<div class="sidenav">
+  <a class="active">Create Request</a>
+  <a href="agent_pending.html">Pending Requests</a>
+  <a href="agent_completed.html">Completed Requests</a>
+
+</div>
+
+</div>
+
+<div class="rightcolumn">
+<div class="active_title">Create Ticket</div>  
+
+
+<div class="content_form">  
+    
+<p>Date: <input type="text" id="datepicker"></p>    
+<p>Date: <input type="text" id="datepicker2"></p>   
+    
+<form action="" method="get" id="ticketDetails">    
+    <select id="concerns">
+    <optgroup label="Shift swap">
+        <option selected>Current week - Shift and RD trade</option>
+        <option>Succeeding weeks - shift and RD trade</option>
+    </optgroup>
+        
+    <optgroup label="Schedule Concerns">
+        <option>Verint and Schedule file mismatch</option>
+        <option>Roster Mismatch</option>
+        <option>Offroster</option>
+        <option>Attrition</option>
+        <option>VL Override</option>
+        <option>ACN Training</option>
+        <option>Shift Slide Request</option>
+    </optgroup>
+        
+    <optgroup label="Shift Exemptions">
+        <option>Student</option>
+        <option>Medical Condition</option>
+        <option>Pregnant</option>
+    </optgroup> 
+</select> 
+<br>    
+<textarea rows="8" cols="50" onfocus="clearContents(this);">
+Please input reason.
+</textarea>
+    
+</form>    
+
+<button type="submit" form="ticketDetails" value="Submit">Submit</button>    
+    
+</div>
+    
+    <div class="content2">ready for any content or slideshow</div>    
+    
+</div>
+
+</div>
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
+</body>
+</html>
